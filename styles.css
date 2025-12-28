@@ -1,0 +1,486 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(to bottom right, #0f172a, #1e293b);
+    min-height: 100vh;
+    padding: 2rem;
+    color: #fff;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+    opacity: 0;
+}
+
+.subtitle {
+    color: #94a3b8;
+    margin-bottom: 2rem;
+}
+
+.mode-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.mode-btn {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.mode-btn.active {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.mode-btn.encrypt {
+    background-color: #475569;
+    color: #cbd5e1;
+}
+
+.mode-btn.encrypt.active {
+    background-color: #2563eb;
+    color: white;
+}
+
+.mode-btn.decrypt {
+    background-color: #475569;
+    color: #cbd5e1;
+}
+
+.mode-btn.decrypt.active {
+    background-color: #16a34a;
+    color: white;
+}
+
+.mode-btn:hover:not(.active) {
+    background-color: #334155;
+}
+
+.panel {
+    background-color: #1e293b;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.panel h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.upload-area {
+    border: 2px dashed #475569;
+    border-radius: 0.5rem;
+    padding: 3rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    margin-bottom: 1.5rem;
+}
+
+.upload-area:hover {
+    border-color: #2563eb;
+}
+
+.decrypt-main:hover {
+    border-color: #16a34a;
+}
+
+.decrypt-token:hover {
+    border-color: #9333ea;
+}
+
+.upload-area input {
+    display: none;
+}
+
+.upload-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #94a3b8;
+}
+
+.upload-text {
+    color: #cbd5e1;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+}
+
+.upload-subtext {
+    color: #64748b;
+    font-size: 0.875rem;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 2rem 0;
+    color: #64748b;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #475569;
+}
+
+.divider span {
+    padding: 0 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.text-input-section {
+    margin-bottom: 1.5rem;
+}
+
+.text-input-section h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+    color: #cbd5e1;
+}
+
+#text-input {
+    width: 100%;
+    min-height: 150px;
+    background-color: #0f172a;
+    color: #cbd5e1;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid #475569;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.95rem;
+    resize: vertical;
+    transition: border-color 0.3s;
+}
+
+#text-input:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+#text-input::placeholder {
+    color: #64748b;
+}
+
+.success-status {
+    color: #22c55e;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+.result-box {
+    background-color: #334155;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.result-box h3 {
+    margin-bottom: 1rem;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: white;
+    position: relative;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-payment {
+    background: linear-gradient(135deg, #9333ea 0%, #0041CC 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-payment::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-payment:hover::before {
+    left: 100%;
+}
+
+.btn-payment:hover {
+    background: linear-gradient(135deg, #0041CC 0%, #9333ea 100%);
+    box-shadow: 0 8px 16px rgba(0, 82, 255, 0.3);
+}
+
+.coinbase-icon {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.btn-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.btn-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.btn-price {
+    font-size: 0.875rem;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+.btn-secondary {
+    background-color: #9333ea;
+}
+
+.btn-secondary:hover {
+    background-color: #7e22ce;
+}
+
+.btn-success {
+    background-color: #16a34a;
+    width: 100%;
+}
+
+.btn-success:hover {
+    background-color: #15803d;
+}
+
+.warning {
+    color: #94a3b8;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+}
+
+.decrypt-areas {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.decrypt-area {
+    border: 2px dashed #475569;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.decrypt-area input {
+    display: none;
+}
+
+textarea {
+    width: 100%;
+    height: 16rem;
+    background-color: #0f172a;
+    color: #cbd5e1;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    font-family: 'Courier New', monospace;
+    font-size: 0.875rem;
+    resize: vertical;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.icon {
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+.upload-area.dragover,
+.decrypt-area.dragover {
+    background-color: rgba(56, 189, 248, 0.1);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    margin-bottom: 0.3rem;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+#pixelCanvas {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.logo {
+    max-width: 60px;
+    height: auto;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #1e293b;
+    border-radius: 1rem;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #334155;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s;
+}
+
+.modal-close:hover {
+    color: #fff;
+}
+
+.modal-body {
+    padding: 2rem;
+    text-align: center;
+}
+
+.payment-amount {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0052FF;
+    margin: 1rem 0;
+}
+
+.payment-info {
+    font-size: 0.875rem;
+    color: #94a3b8;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 40px;
+    }
+    
+    .logo {
+        max-width: 60px;
+    }
+    
+    .header {
+        gap: 10px;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .modal-content {
+        width: 95%;
+    }
+    
+    .btn-content {
+        align-items: center;
+    }
+}

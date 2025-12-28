@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Text Encryptor/Decryptor</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="EnDec logo.webp" class="logo">
+            <canvas id="pixelCanvas"></canvas>
+            <h1 id="text">.txt En/Dec</h1>
+        </div>
+        <p class="subtitle">Secure your documents with color-pixel encoding</p>
+
+        <!-- Mode Selection -->
+        <div class="mode-buttons">
+            <button class="mode-btn encrypt active" onclick="setMode('encrypt')">
+                🔒 Encrypt
+            </button>
+            <button class="mode-btn decrypt" onclick="setMode('decrypt')">
+                🔓 Decrypt
+            </button>
+        </div>
+
+        <!-- Encrypt Panel -->
+        <div id="encrypt-panel" class="panel">
+            <h2>Encrypt Your Document</h2>
+            
+            <div class="upload-area" onclick="document.getElementById('file-input').click()">
+                <input type="file" id="file-input" accept=".txt" onchange="encryptFile(event)">
+                <div class="upload-icon">📤</div>
+                <p class="upload-text">Drop your text file here or click to browse</p>
+                <p class="upload-subtext">Supports: .txt files</p>
+            </div>
+
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+            <div class="text-input-section">
+                <h3>Type Your Text</h3>
+                <textarea id="text-input" placeholder="Type or paste your text here..."></textarea>
+                <button class="btn btn-primary" onclick="encryptText()" style="width: 100%; margin-top: 1rem;">
+                    🔒 Encode Text
+                </button>
+            </div>
+
+            <div id="encrypt-result" class="hidden">
+                <div class="result-box">
+                    <h3>Encryption Complete!</h3>
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="downloadImage('encrypted')">
+                            ⬇️ Download Encrypted Image
+                        </button>
+                        <button class="btn btn-payment" onclick="downloadImage('token')">
+                            <svg class="coinbase-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 40C31.0457 40 40 31.0457 40 20C40 8.9543 31.0457 0 20 0C8.9543 0 0 8.9543 0 20C0 31.0457 8.9543 40 20 40Z" fill="#0052FF"/>
+                                <path d="M20 28C24.4183 28 28 24.4183 28 20C28 15.5817 24.4183 12 20 12C15.5817 12 12 15.5817 12 20C12 24.4183 15.5817 28 20 28Z" fill="white"/>
+                                <path d="M17 20H23" stroke="#0052FF" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M20 17V23" stroke="#0052FF" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span class="btn-content">
+                                <span class="btn-text">Download Auth Token</span>
+                                <span class="btn-price">$0.60</span>
+                            </span>
+                        </button>
+                    </div>
+                    <p class="warning">⚠️ Keep both images safe! You need both to decrypt your document.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decrypt Panel -->
+        <div id="decrypt-panel" class="panel hidden">
+            <h2>Decrypt Your Document</h2>
+            
+            <div class="decrypt-areas">
+                <div class="decrypt-area decrypt-main" onclick="document.getElementById('main-input').click()">
+                    <input type="file" id="main-input" accept="image/*" onchange="loadMainImage(event)">
+                    <div class="upload-icon">🖼️</div>
+                    <p class="upload-text">Upload Encrypted Image</p>
+                    <p id="main-status" class="success-status hidden">✓ Uploaded</p>
+                </div>
+
+                <div class="decrypt-area decrypt-token" onclick="document.getElementById('token-input').click()">
+                    <input type="file" id="token-input" accept="image/*" onchange="loadTokenImage(event)">
+                    <div class="upload-icon">🔑</div>
+                    <p class="upload-text">Upload Auth Token Image</p>
+                    <p id="token-status" class="success-status hidden">✓ Uploaded</p>
+                </div>
+            </div>
+
+            <button id="decrypt-btn" class="btn btn-success hidden" onclick="decryptImages()">
+                Decrypt Document
+            </button>
+
+            <div id="decrypt-result" class="hidden">
+                <div class="result-box">
+                    <h3>Decrypted Text:</h3>
+                    <textarea id="decrypted-text" readonly></textarea>
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="downloadText()">
+                        ⬇️ Download as Text File
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="modal hidden" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🔑 Purchase Auth Token</h2>
+                <button class="modal-close" onclick="closePaymentModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <p>If you need a crypto wallet start with creating the Coinbase account by clicking <a href="https://coinbase.com/join/JNW7JSZ?src=referral-link">here.</a> 😉</p><br>
+                <div id="payment-status">
+                    <p>Preparing your payment...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="encryptor.js"></script>
+</body>
+</html>
