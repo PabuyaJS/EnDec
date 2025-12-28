@@ -142,7 +142,7 @@ function encryptText() {
 async function processEncryption(text, originalFileName) {
     try {
         // Show loading state
-        document.getElementById('encrypt-result').innerHTML = '<p>Encrypting...</p>';
+        document.getElementById('encrypt-result').innerHTML = '<p>Encrypting...</p><p style="font-size: 0.875rem; color: #94a3b8;"> First request may take 30 seconds...</p>';
         document.getElementById('encrypt-result').classList.remove('hidden');
 
         // Send to backend for encryption
@@ -535,3 +535,4 @@ function enableDragAndDrop(zone, input, onFile) {
     });
 
 }
+
