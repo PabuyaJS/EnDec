@@ -6,7 +6,7 @@ const canvas = document.getElementById('pixelCanvas');
 const ctx = canvas.getContext('2d');
 
 // Your backend API URL (change this after deployment)
-const API_URL = 'https://your-backend-url.com'; // e.g., https://your-app.railway.app
+const API_URL = 'https://text-endec-backend.onrender.com'; // e.g., https://your-app.railway.app
 
 const pixelSize = 2;
 let pixels = [];
@@ -533,4 +533,5 @@ function enableDragAndDrop(zone, input, onFile) {
 
         onFile({ target: input });
     });
+
 }
