@@ -17,6 +17,10 @@ body {
     margin: 0 auto;
 }
 
+.nav {
+    background: linear-gradient(135deg, #9333ea 0%, #0041CC 100%);
+}
+
 h1 {
     font-size: 3rem;
     font-weight: bold;
@@ -483,4 +487,5 @@ textarea {
     .btn-content {
         align-items: center;
     }
+
 }
