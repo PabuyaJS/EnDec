@@ -23,7 +23,7 @@ body {
     text-align: left;
     margin-bottom: 0.3rem;
     gap: 15px;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 
 h1 {
@@ -485,4 +485,5 @@ textarea {
     }
 
 }
+
 
